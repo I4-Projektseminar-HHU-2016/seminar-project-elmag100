@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+	<h1>Benutzer ({{ length }})</h1>
+	<ul>
+	{% for user_profile in users %}
+		<li><a href="{{ url_for('.user', user_id=user_profile['id']) }}">{{ user_profile['name'] }}</a></li>
+	{% endfor %}
+	</ul>
+{% endblock %}
