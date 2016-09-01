@@ -1,0 +1,115 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+	<h1>Kategorien</h1>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Fisch &amp; Meeresfrüchte &bull; {{ result_count_fish }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}fish">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_fish %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_fish > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Asiatisch/Fernost &bull; {{ result_count_asia }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}asia">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_asia %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_asia > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Italienisch &bull; {{ result_count_italy }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}italy">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_italy %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_italy > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Cafés &amp; Frühstück &bull; {{ result_count_cafe }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}cafe">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_cafe %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_cafe > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Spanisch &bull; {{ result_count_spain }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}spain">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_spain %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_spain > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Französisch &bull; {{ result_count_france }}
+					<span class="pull-right"><a href="{{ url_for('.categories') }}france">Alle ansehen</a></span>
+				</div>
+				<div class="panel-body">
+					<ul>
+					{% for restaurant in restaurants_france %}
+						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+					{% endfor %}
+					{%if result_count_france > 5%}
+						<li>...</li>
+					{%endif%}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+	<h1>Restaurants</h1>
+	<p>
+		Insgesamt {{ result_count }} Ergebnisse:
+	</p>
+	<ul>
+		{% for restaurant in restaurants %}
+			<li><b>{{ restaurant['name'] }}</b>
+				<ul>
+					<li>{{ restaurant['name'] }}</li>
+					<li>Straße: {{ restaurant['street'] }}</li>
+					<li>Stadt: {{ restaurant['city'] }}</li>
+					<li>PLZ: {{ restaurant['zip'] }}</li>
+					<li><a href="{{ restaurant['url'] }}">{{ restaurant['url'] }}</a></li>
+					<li>{{ restaurant['description'] }}</li>
+				</ul>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

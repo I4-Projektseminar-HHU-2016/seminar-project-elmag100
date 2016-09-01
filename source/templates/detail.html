@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+	<p><a href="#" onClick="window.history.back();">&laquo; zurück</a></p>
+	<h1>{{ restaurant['name'] }}</h1>
+	<span style="font-size: 12px;">
+		{{ restaurant['street'] }} &bull; {{ restaurant['zip'] }} {{ restaurant['city'] }} &bull;
+		<a target="_blank" href="{{ restaurant['url'] }}">Weitere Infos</a><br><br>
+	</span>
+	<p>{{ restaurant['description'] }}</p>
+{% endblock %}
