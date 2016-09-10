@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+	<div class="row">
+		<div class="col-sm-offset-4 col-sm-4">
+			<h1>Login</h1>
+			<hr>
+			<form action="{{ url_for('.login') }}" method="get">
+				<input type="text" name="name" id="name" placeholder="Benutzername" class="form-control"><br>
+				<input type="password" name="password" id="password" placeholder="Passwort" class="form-control"><br>
+				<input type="submit" value="Einloggen" class="form-control btn-primary">
+			</form>
+			<hr>
+			<a href="{{ url_for('.register_form') }}">Registrieren</a>
+		</div>
+	</div>
+{% endblock %}

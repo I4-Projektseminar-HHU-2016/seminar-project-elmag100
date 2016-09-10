@@ -5,6 +5,7 @@
 	<ul>
 	{% for user_profile in users %}
 		<li><a href="{{ url_for('.user', user_id=user_profile['id']) }}">{{ user_profile['name'] }}</a></li>
+		<li>{{user_profile['password']}}</li>
 	{% endfor %}
 	</ul>
 {% endblock %}
