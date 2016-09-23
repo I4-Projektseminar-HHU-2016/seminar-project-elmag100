@@ -13,14 +13,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}fish">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_fish %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_fish > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -31,14 +31,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}asia">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_asia %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_asia > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -49,14 +49,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}italy">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_italy %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_italy > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -67,14 +67,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}cafe">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_cafe %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_cafe > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -85,14 +85,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}spain">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_spain %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_spain > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>
@@ -103,14 +103,14 @@
 					<span class="pull-right"><a href="{{ url_for('.categories') }}france">Alle ansehen</a></span>
 				</div>
 				<div class="panel-body">
-					<ul>
+					<ol>
 					{% for restaurant in restaurants_france %}
-						<li><b>{{ restaurant['name'] }}</b> &bull; {{ restaurant['street'] }}</li>
+						<li><b><a href="{{ url_for('.detail', restaurant_id=restaurant['id']) }}">{{ restaurant['name'] }}</a></b> &bull; {{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></li>
 					{% endfor %}
 					{%if result_count_france > 5%}
 						<li>...</li>
 					{%endif%}
-					</ul>
+					</ol>
 				</div>
 			</div>
 		</div>

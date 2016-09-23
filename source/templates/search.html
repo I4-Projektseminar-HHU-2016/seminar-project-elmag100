@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block navigation %}{{ super( ) }}{% endblock %}
+{% block content %}
+<script>
+
+$(document).ready(function () {
+
+	$("#search_button").click(function () {
+		var search_term = $("#search_term").val();
+		window.location.href = "restaurants/keyword/" + search_term;
+	});
+
+});
+
+</script>
+<div class="row">
+	<div class="col-sm-offset-3 col-sm-6">
+		<div class="panel panel-default text-center">
+			<div class="panel-heading">
+				Restaurantsuche
+			</div>
+			<div class="panel-body">
+				Geben sie ein Stichwort, ein Restaurantname, eine Straße oder eine Postleitzahl an, um Ihre Suche zu beginnen.<br><br>
+				<input class="form-control" type="text" id="search_term">
+				<button class="btn btn-primary" id="search_button" style="margin-top: 15px;">Suchen</button>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

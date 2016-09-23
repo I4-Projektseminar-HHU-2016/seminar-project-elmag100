@@ -34,10 +34,16 @@
 					<ul class="nav navbar-nav">
 						<li><a href="{{ url_for('.restaurants') }}">Start</a></li>
 						<li><a href="{{ url_for('.categories') }}">Kategorien</a></li>
+						<li><a href="{{ url_for('.search_form') }}">Suche</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
+						{% if session_user != None %}
+						<li><a href="{{ url_for('.user', user_id=session_user['id']) }}">{{ session_user['name'] }}</a></li>
+						<li><a href="{{ url_for('.logout') }}">Logout</a></li>
+						{% else %}
 						<li><a href="{{ url_for('.register_form') }}">Registrieren</a></li>
 						<li><a href="{{ url_for('.login_form') }}">Login</a></li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>

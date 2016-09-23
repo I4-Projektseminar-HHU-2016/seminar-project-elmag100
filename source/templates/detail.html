@@ -2,7 +2,7 @@
 {% block navigation %}{{ super( ) }}{% endblock %}
 {% block content %}
 	<p><a href="#" onClick="window.history.back();">&laquo; zurück</a></p>
-	<h1>{{ restaurant['name'] }}</h1>
+	<h1>{{ restaurant['name'] }} - <small>{{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></small></h1>
 	<hr>
 	<span style="font-size: 12px;">
 		{{ restaurant['street'] }} &bull; {{ restaurant['zip'] }} {{ restaurant['city'] }} &bull;
@@ -13,11 +13,13 @@
 	<div class="row">
 		<div class="col-sm-offset-3 col-sm-6">
 			{% for rating in ratings %}
-				{{ rating['rating'] }} <span style="color: #ED0;"><strong>*</strong></span> &bull; Benutzer #{{ rating['user_id'] }}<br>{{ rating['text'] }}
+				{{ rating['rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span> &bull; {{ rating['name'] }}<br>{{ rating['text'] }}
 				<hr>
 			{%endfor%}
 		</div>
 	</div>
+
+	{% if session_user != None %}
 	<div class="row">
 		<div class="col-sm-offset-3 col-sm-6">
 			<div class="panel panel-default">
@@ -28,13 +30,15 @@
 					<form action="{{ url_for('.rate') }}" method="get">
 						<div class="row">
 							<input type="hidden" name="restaurant_id" value="{{ restaurant['id'] }}">
-							<input type="hidden" name="user_id" value="1">
+							<input type="hidden" name="user_id" value="{{ session_user['id'] }}">
  							<div class="col-md-12">
 								<textarea name="text" placeholder="Ihr Kommentar" class="form-control" required="required"></textarea>
 							</div>
-							<div class="col-md-6 text-center">
-								<span style="margin-top: 15px; display: block; font-size: 35px; height: 0px; color: #ED0;"><strong>* * * * *</strong></span>
-								<input class="form-control" type="number" name="rating" length="1" min="1" max="5" value="3">
+							<div class="col-md-1">
+								<span style="margin-top: 7px; display: block; font-size: 35px; height: 0px; color: #ED0;"><strong>&#9733;</strong></span>
+							</div>
+							<div class="col-md-5 text-center">
+								<input style="margin-top: 15px;" class="form-control" type="number" name="rating" length="1" min="1" max="5" value="3">
 							</div>
 							<div class="col-md-6">
 								<input type="submit" value="Bewertung abgeben" class="form-control btn btn-primary" style="margin-top: 15px;">
@@ -44,5 +48,6 @@
 				</div>
 			</div>
 		</div>
+	{% endif %}
 	</div>
 {% endblock %}

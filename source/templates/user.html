@@ -1,8 +1,17 @@
 {% extends "layout.html" %}
 {% block navigation %}{{ super( ) }}{% endblock %}
 {% block content %}
-	<h1>{{ user['name'] }}</h1>
-	<ul>
-		<li>{{ user['email'] }}</li>
-	</ul>
+<div class="row">
+	<div class="col-sm-offset-4 col-sm-4">
+		<div class="panel panel-default text-center">
+			<div class="panel-heading">
+				Profil von {{ user['name'] }}
+			</div>
+			<div class="panel-body">
+				{{ user['email'] }}</br>
+				{{ user['ratings'] }} Bewertungen
+			</div>
+		</div>
+	</div>
+</div>
 {% endblock %}
