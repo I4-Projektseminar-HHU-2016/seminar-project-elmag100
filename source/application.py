@@ -5,7 +5,7 @@ import os
 import codecs
 import sqlite3
 import unicodecsv as csv
-from flask import Flask, render_template, g, flash, request, session
+from flask import Flask, render_template, g, flash, request, session, redirect, url_for
 
 app = Flask(__name__)
 
@@ -49,7 +49,7 @@ def user(user_id): # Informationen über einen Benutzer
 @app.route('/')
 @app.route('/restaurants')
 def restaurants(): # Liste aller Restaurants anzeigen
-	restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id GROUP BY restaurant.id')
+	restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id GROUP BY restaurant.id ORDER BY avg_rating DESC')
 	return render_template('restaurants.html', restaurants=restaurants, result_count=len(restaurants), session_user=get_user(session.get('user_id')))
 
 @app.route('/restaurants/keyword/<keyword>')
@@ -115,22 +115,22 @@ def categories(): # Kategorien anzeigen
 @app.route('/categories/<category>')
 def categories_detail(category): # Eine Kategorie anzeigen
 	if category == 'asia':
-		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%asia%','%asien%', '%vietn%', '%korea%', '%fernost%', '%fernöstlich%'.decode('utf8'), '%indisch%', '%thai%', '%japan%', '%china%', '%chinesisch%'))
 	elif category == 'italy':
-		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%pizza%', '%italien%'))
 	elif category == 'cafe':
-		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%café%'.decode('utf8'), '%cafe%', '%frühstück%'.decode('utf-8')))
 	elif category == 'spain':
-		restaurants = query_db('SELECT * FROM restaurant WHERE description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT * FROM restaurant WHERE description LIKE ? OR description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%spanien%', '%spanisch%', '%tapas%'))
 	elif category == 'fish':
-		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%fisch%', '%meeres%'))
 	elif category == 'france':
-		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id',
+		restaurants = query_db('SELECT *, COALESCE(ROUND(AVG(rating), 1), 0.0) as avg_rating FROM restaurant LEFT JOIN rating ON rating.restaurant_id = restaurant.id WHERE description LIKE ? OR description LIKE ? GROUP BY restaurant.id ORDER BY avg_rating DESC',
 		('%frankreich%', '%französisch%'.decode('utf-8')))
 	return render_template('restaurants.html', restaurants=restaurants, result_count=len(restaurants), session_user=get_user(session.get('user_id')))
 
@@ -193,7 +193,7 @@ def rate(): # Bewertung für ein Restaurant abgeben
 	db.execute("INSERT INTO rating VALUES (NULL, ?, ?, ?, ?)", (restaurant_id, user_id, rating, text))
 	db.commit()
 	
-	return detail(restaurant_id)
+	return redirect(url_for(".detail", restaurant_id=restaurant_id))
 
 
 def insert_restaurant(restaurant): # Im Import-Prozess verwendet

@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block navigation %}{{ super( ) }}{% endblock %}
 {% block content %}
-	<p><a href="#" onClick="window.history.back();">&laquo; zurück</a></p>
+	<p><a href="#" onClick="if(document.referrer) {window.open(document.referrer,'_self');} else {history.go(-1);} return false;">&laquo; zurück</a></p>
 	<h1>{{ restaurant['name'] }} - <small>{{ restaurant['avg_rating'] }} <span style="color: #ED0;"><strong>&#9733;</strong></span></small></h1>
 	<hr>
 	<span style="font-size: 12px;">
