@@ -1,35 +1,41 @@
+# Restaurant Ratingportal
 
-# Dies ist ein Bewertungsportal für  Restaurants in Hamburg
+A simple Python Webapp for searching through the restaurants of Hamburg.
 
 
-## Features ##
+Features
+---------------
+* Usermanagement
+* Automatically indexed Categories
+* Ratingsystem
+* Search
 
-- [x] Login/Logout
-- [x] Registrierung
-- [x] Bewertung
-- [x] Kommentare
-- [x] Detailansicht
-- [x] Suchfunktion
-- [x] Kategoriesierung
-- [x] Mittelwert jeweiliger Bewertungen
-- [x] Top 5
 
-## Hinweise zur Installation / Ausführung
+Getting Started
+---------------
+The "Restaurant Ratingportal" is written in Python 2.7. Python 2.7 is requiered to run the Web-App. To install the other requirements you need to have "pip" installed. Please run following commands in your terminal to install all other requirements.
 
-Nach dem Entpacken des Archives ist keine weitere Installation der Anwendung notwendig. Zur Einrichtung und Ausführung wird allerdings Python 2.7 und pip benötigt.
+```bash
+pip install flask
+pip install jinja2
+```
 
-Danach werden folgende Befehle in einer Konsole nacheinander ausgeführt:
+After installing all requirements you'll just have to navigate into the directory and run
 
-1. Mittels~cd<pfad>in den Installationsordner navigieren
-2. Falls das Flask Frame work noch nicht installiert ist
-a. ~ pip install flask und warten bis Flask installiert ist
-3. Falls das Flask Framework bereits installiert ist
-a. ~ pip install flask --upgrade um sicherzustellen, dass die Version aktuell ist
-4. Nun muss Flask in einer Umgebungsvariable mitgeteilt werden, welche Anwendung ausgeführt werden soll: ~ export FLASK_APP=application.py Hierbei ist es wichtig, dass die Konsole im gleichen Ordner, wie die Datei application.py ist.
-5. Im letzten Schritt muss der Server nun gestartet werden. Je nach Installationsumgebung reicht der Befehl ~ flask run dafür aus, sicher funktioniert jedoch ~ python -m flask run.
-6. Wenn alles geklapp that,sollte in der Konsole folgender Text bestätigen,dass der Server läuft:
-* Serving Flask app “application” 
-* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-7. Nun kann die Anwendung in einem beliebigen Browser unter der Adressse http://127.0.0.1:5000/ aufgerufen werden.
-8. Wer die Registrierung überspringen möchte kann sich mit dem Benutzernamen Tester und dem Passwort 123 anmelden.
-9. Viel Spaß mit der Anwendung!
+```bash
+~ export FLASK_APP=application.py
+~ python -m flask run
+```
+
+Versioning
+---------------
+For versioning we used GitHub
+
+
+Authors
+---------------
+* Elina Magamaeva ([E-Mail](mailto:elina.magamaeva@uni-duesseldorf.de))
+
+License
+-----------------
+This project is licensed under the MIT License - see the [License](https://opensource.org/licenses/MIT) for details.
